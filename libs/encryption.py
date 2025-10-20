@@ -5,6 +5,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 KEY_PATH = os.path.join(BASE_DIR, "secret.key")
 
+
 # generar cifrado
 def generate_key():
     if not os.path.exists(KEY_PATH):
@@ -14,6 +15,7 @@ def generate_key():
     else:
         return 0
 
+
 # cargar cifrado
 def load_key():
     if not os.path.exists(KEY_PATH):
@@ -21,12 +23,14 @@ def load_key():
     with open(KEY_PATH, "rb") as key_file:
         return key_file.read()
 
+
 # encriptando contraseñas
 def encrypt_password(password):
     key = load_key()
     fernet = Fernet(key)
     encrypted = fernet.encrypt(password.encode())
     return encrypted.decode()
+
 
 # desencriptando contraseñas
 def decrypt_password(encrypted_password):

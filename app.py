@@ -1,5 +1,5 @@
 import libs.db as db
-from cryptography.fernet import Fernet
+import libs.encryption as enc
 import os
 
 

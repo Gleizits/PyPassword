@@ -29,7 +29,7 @@ try:
     conn = sql.connect(DB_PATH)
     cursor = conn.cursor()
     conn.commit()
-    
+
     # registrar contraseñas
     def register_pass(service, username, password_encrypted):
         cursor.execute(
