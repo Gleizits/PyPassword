@@ -13,8 +13,9 @@ try:
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS passwords (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                pass TEXT NOT NULL,
-                description TEXT,
+                service TEXT NOT NULL,
+                username TEXT,
+                password_encrypted TEXT NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )""")
@@ -56,6 +57,12 @@ try:
         # guardar los cambios
         conn.commit()
         """
+    # registrar contraseñas
+    def register_pass(service, description, password_encrypted):
+        # insertar los datos en la tabla
+        cursor.execute(f"INSERT INTO passwords (service, description, password_encrypted) VALUES (?, ?, ?)", (service, description, password_encrypted))
+        # guardar los cambios
+        conn.commit()
 
 except sql.Error as e:
     # mostrar el errorm si ocurre
