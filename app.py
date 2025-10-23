@@ -42,7 +42,7 @@ def main():
                 print(passwords)
             elif choice == 3:
                 passwords = view_pass()
-                print("\n--- Current Passwords ---")
+                print("\n--- Passwords ---")
                 print(passwords)
                 pass_id = int(input("\nEnter password ID to update: "))
                 service = input("Enter new service name: ")
@@ -51,7 +51,7 @@ def main():
                 update_pass(pass_id, service, username, password)
             elif choice == 4:
                 passwords = view_pass()
-                print("\n--- Current Passwords ---")
+                print("\n--- Passwords ---")
                 print(passwords)
                 pass_id = int(input("\nEnter password ID to delete: "))
                 delete_pass(pass_id)

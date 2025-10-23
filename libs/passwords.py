@@ -1,22 +1,35 @@
-try:
-    # archivo .txt para almacenar las contraseñas
-    with open("txt/passwords.txt", "r") as f:
-        passwords = f.read()
+import os
 
+# crear txt si no existe
+if not os.path.exists("txt"):
+    os.makedirs("txt")
+
+# crear el archivo passwords.txt si no existe
+if not os.path.exists("txt/passwords.txt"):
+    with open("txt/passwords.txt", "w") as f:
+        f.write("")
+
+try:
     # ver contraseñas
     def view_pass():
-        # datos actualizados
         with open("txt/passwords.txt", "r") as f:
-            return f.read()
+            content = f.read()
+            if not content:
+                return "No passwords"
 
-    # agregar contraseñas
+            lines = content.splitlines()
+            result = []
+            for idx, line in enumerate(lines):
+                result.append(f"[{idx}] {line}")
+            return "\n".join(result)
+
+    # agregar contraseñas a el archivo .txt
     def add_pass(service, username, password):
         with open("txt/passwords.txt", "a") as f:
             f.write(f"{service} | {username} | {password}\n")
 
     # actualizar contraseñas
     def update_pass(pass_id, service, username, password):
-        # releer el archivo
         with open("txt/passwords.txt", "r") as f:
             lines = f.read().splitlines()
 
@@ -29,7 +42,6 @@ try:
 
     # eliminar contraseñas
     def delete_pass(pass_id):
-        # releer el archivo
         with open("txt/passwords.txt", "r") as f:
             lines = f.read().splitlines()
 
@@ -41,7 +53,7 @@ try:
         else:
             print("Password not found.")
 
-except FileNotFoundError as e:
+except FileNotFoundError:
     print(f"Error: {e}")
 
 if __name__ == "__main__":
