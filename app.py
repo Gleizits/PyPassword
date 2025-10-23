@@ -1,4 +1,4 @@
-import libs.db as db
+import libs.passwords as passwords
 import libs.encryption as enc
 import os
 
@@ -32,21 +32,21 @@ def main():
             choice = int(input("Choose an option (1-5): "))
 
             if choice == 1:
-                title = input("Enter your password: ")
-                description = input("Enter the service password: ")
-                status = input("Enter the username of the password owner: ")
-                add_passw(id, password_encrypted, username)
+                password = input("Enter your password: ")
+                service = input("Enter the service name: ")
+                username = input("Enter the username of the password owner: ")
+                enc.add_pass(service, username, enc.password)
             elif choice == 2:
-                view_passw()
+                view_pass()
             elif choice == 3:
-                task_id = int(input("Enter task ID to update: "))
-                title = input("Enter new task title: ")
-                description = input("Enter new task description: ")
-                status = input("Enter new task status (pending/completed): ")
-                update_passw(task_id, title, description, status)
+                task_id = int(input("Enter password ID to update: "))
+                password = input("Enter new password: ")
+                service = input("Enter new password service: ")
+                username = input("Enter new username: ")
+                update_pass(task_id, enc.password, service, username)
             elif choice == 4:
-                task_id = int(input("Enter task ID to delete: "))
-                delete_passw(task_id)
+                task_id = int(input("Enter password ID to delete: "))
+                delete_pass(task_id)
             elif choice == 5:
                 print("Exiting the application..... \n Goodbye!😀")
                 break
