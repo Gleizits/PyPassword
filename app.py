@@ -1,4 +1,4 @@
-import libs.passwords
+from libs.passwords import add_pass, view_pass, update_pass, delete_pass
 import os
 
 
@@ -62,7 +62,7 @@ def main():
                 print("Invalid choice. Please try again.")
 
             input("Press Enter to continue...")
-            os.system("clear")
+            os.system("cls")
 
 
 if __name__ == "__main__":
